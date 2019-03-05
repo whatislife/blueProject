@@ -1,0 +1,40 @@
+各位领导好
+
+由于监管平台1.5添加了一台新的服务器 需要对nginx配置文件进行修改 
+
+请领导审批，请IT运维配合操作
+
+======================================================================
+以下操作需要在tomcat服务升级完成进行 
+nginx服务器地址
+[3  ] 10.31.147.181    22     checking01.ng.bu.tob.aiboche   [zhht]         
+[7  ] 10.174.89.69     22     checking02.ng.bu.tob.aiboche   [zhht] 
+
+操作步骤
+进入如上两台ng服务器分别进行如下操作 
+
+进入/opt/local/nginx/conf
+在nginx.conf中
+upstream cop {
+        ip_hash;
+        server 10.30.95.215:80;
+        server 10.31.147.170:80;
+    }      
+upstream websocket {  
+        server 10.30.95.215:80;
+        server 10.31.147.170:80; 
+}
+添加 10.66.96.42:80;修改后如下
+upstream cop {
+        ip_hash;
+        server 10.30.95.215:80;
+        server 10.31.147.170:80;
+	server 10.66.96.42:80;
+    }      
+upstream websocket {  
+        server 10.30.95.215:80;
+        server 10.31.147.170:80;
+	server 10.66.96.42:80; 
+}
+
+重启nginx服务
