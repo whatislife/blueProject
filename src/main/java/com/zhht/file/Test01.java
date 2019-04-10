@@ -10,6 +10,9 @@ import org.junit.Test;
 import com.jcraft.jsch.ChannelSftp;
  
 public class Test01 {
+	
+	
+	
 	//建立链接
 	Util sf = new Util(); 
 	String host = "123.57.173.185";
